@@ -13,6 +13,7 @@
 		66CF4C97223A0C0A00F041AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66CF4C96223A0C0A00F041AC /* Assets.xcassets */; };
 		66CF4C9A223A0C0A00F041AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66CF4C98223A0C0A00F041AC /* LaunchScreen.storyboard */; };
 		66CF4CA2223A0DBE00F041AC /* words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 66CF4CA1223A0DBE00F041AC /* words.txt */; };
+		66CF4CA5223A0E7300F041AC /* Hangman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF4CA4223A0E7300F041AC /* Hangman.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		66CF4C99223A0C0A00F041AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		66CF4C9B223A0C0A00F041AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66CF4CA1223A0DBE00F041AC /* words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = words.txt; sourceTree = "<group>"; };
+		66CF4CA4223A0E7300F041AC /* Hangman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hangman.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +59,8 @@
 			isa = PBXGroup;
 			children = (
 				66CF4C8F223A0C0600F041AC /* AppDelegate.swift */,
-				66CF4C91223A0C0600F041AC /* ViewController.swift */,
+				66CF4CA6223A0E7A00F041AC /* Model */,
+				66CF4CA3223A0E5E00F041AC /* View + Controller */,
 				66CF4C93223A0C0600F041AC /* Main.storyboard */,
 				66CF4C96223A0C0A00F041AC /* Assets.xcassets */,
 				66CF4C98223A0C0A00F041AC /* LaunchScreen.storyboard */,
@@ -65,6 +68,22 @@
 				66CF4CA1223A0DBE00F041AC /* words.txt */,
 			);
 			path = Hangman;
+			sourceTree = "<group>";
+		};
+		66CF4CA3223A0E5E00F041AC /* View + Controller */ = {
+			isa = PBXGroup;
+			children = (
+				66CF4C91223A0C0600F041AC /* ViewController.swift */,
+			);
+			path = "View + Controller";
+			sourceTree = "<group>";
+		};
+		66CF4CA6223A0E7A00F041AC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				66CF4CA4223A0E7300F041AC /* Hangman.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +160,7 @@
 			files = (
 				66CF4C92223A0C0600F041AC /* ViewController.swift in Sources */,
 				66CF4C90223A0C0600F041AC /* AppDelegate.swift in Sources */,
+				66CF4CA5223A0E7300F041AC /* Hangman.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
