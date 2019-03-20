@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     let letterCellSize = CGSize(width: 50, height: 50)
     
     let rusLetters = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+//    let engLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
     // UI -------------
     private var failsLabel: UILabel!
@@ -57,7 +58,8 @@ class ViewController: UIViewController {
 
         promptLabel = UILabel()
         promptLabel.translatesAutoresizingMaskIntoConstraints = false
-        promptLabel.font = UIFont.systemFont(ofSize: 40)
+//        promptLabel.font = UIFont.systemFont(ofSize: 40)
+        promptLabel.font = UIFont(name: "StrokeRUSBYLYAJKA-Medium", size: 40)
         promptLabel.textAlignment = .center
         promptLabel.adjustsFontSizeToFitWidth = true
         promptLabel.minimumScaleFactor = 0.25
@@ -89,9 +91,9 @@ class ViewController: UIViewController {
             promptLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 
             lettersCollectionView.topAnchor.constraint(equalTo: promptLabel.bottomAnchor, constant: 50),
-            lettersCollectionView.widthAnchor.constraint(equalToConstant: 300),
-            lettersCollectionView.heightAnchor.constraint(equalToConstant: 300),
-            lettersCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            lettersCollectionView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            lettersCollectionView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            lettersCollectionView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -16)
         ])
     }
 
@@ -156,9 +158,7 @@ extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "letterCell", for: indexPath) as! LettersCollectionViewCell
-        
         let letter = String(rusLetters[rusLetters.index(rusLetters.startIndex, offsetBy: indexPath.item)])
-        print(letter)
 
         cell.letterLabel.text = letter
         cell.letterLabel.textColor = hangmanGame.activatedLetters.contains(letter) ? #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1) : #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)

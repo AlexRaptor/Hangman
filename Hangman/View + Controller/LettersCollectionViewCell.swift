@@ -17,7 +17,7 @@ class LettersCollectionViewCell: UICollectionViewCell {
         
         letterLabel = UILabel()
         letterLabel.translatesAutoresizingMaskIntoConstraints = false
-        letterLabel.font = UIFont.systemFont(ofSize: 36)
+        letterLabel.font = UIFont(name: "StrokeRUSBYLYAJKA-Medium", size: 36)
         letterLabel.textAlignment = .center
         
         self.addSubview(letterLabel)

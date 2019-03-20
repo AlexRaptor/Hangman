@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		664FFD902241FDE30016F52C /* LettersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664FFD8F2241FDE30016F52C /* LettersCollectionViewCell.swift */; };
+		664FFD9322422CCC0016F52C /* Stroke.otf in Resources */ = {isa = PBXBuildFile; fileRef = 664FFD9122422C280016F52C /* Stroke.otf */; };
 		66CF4C90223A0C0600F041AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF4C8F223A0C0600F041AC /* AppDelegate.swift */; };
 		66CF4C92223A0C0600F041AC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF4C91223A0C0600F041AC /* ViewController.swift */; };
 		66CF4C95223A0C0600F041AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66CF4C93223A0C0600F041AC /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		664FFD8F2241FDE30016F52C /* LettersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LettersCollectionViewCell.swift; sourceTree = "<group>"; };
+		664FFD9122422C280016F52C /* Stroke.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Stroke.otf; sourceTree = "<group>"; };
 		66CF4C8C223A0C0500F041AC /* Hangman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hangman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66CF4C8F223A0C0600F041AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		66CF4C91223A0C0600F041AC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -41,6 +43,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		664FFD9222422C2E0016F52C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				664FFD9122422C280016F52C /* Stroke.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		66CF4C83223A0C0500F041AC = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +70,7 @@
 		66CF4C8E223A0C0500F041AC /* Hangman */ = {
 			isa = PBXGroup;
 			children = (
+				664FFD9222422C2E0016F52C /* Fonts */,
 				66CF4C8F223A0C0600F041AC /* AppDelegate.swift */,
 				66CF4CA6223A0E7A00F041AC /* Model */,
 				66CF4CA3223A0E5E00F041AC /* View + Controller */,
@@ -147,6 +158,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				664FFD9322422CCC0016F52C /* Stroke.otf in Resources */,
 				66CF4C9A223A0C0A00F041AC /* LaunchScreen.storyboard in Resources */,
 				66CF4C97223A0C0A00F041AC /* Assets.xcassets in Resources */,
 				66CF4CA2223A0DBE00F041AC /* words.txt in Resources */,
