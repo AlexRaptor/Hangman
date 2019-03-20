@@ -32,7 +32,7 @@ class ViewController: UIViewController {
     override func loadView() {
 
         view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1) // #colorLiteral(red: 0.1238629738, green: 0.2256446546, blue: 0, alpha: 1)
 
         createUI()
     }
@@ -49,17 +49,22 @@ class ViewController: UIViewController {
 
         failsLabel = UILabel()
         failsLabel.translatesAutoresizingMaskIntoConstraints = false
+        failsLabel.font = UIFont(name: "StrokeRUSBYLYAJKA-Medium", size: 17)
+        failsLabel.textColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
         view.addSubview(failsLabel)
 
         wordNumberLabel = UILabel()
         wordNumberLabel.translatesAutoresizingMaskIntoConstraints = false
+        wordNumberLabel.font = UIFont(name: "StrokeRUSBYLYAJKA-Medium", size: 17)
         wordNumberLabel.textAlignment = .right
+        wordNumberLabel.textColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
         view.addSubview(wordNumberLabel)
 
         promptLabel = UILabel()
         promptLabel.translatesAutoresizingMaskIntoConstraints = false
-//        promptLabel.font = UIFont.systemFont(ofSize: 40)
         promptLabel.font = UIFont(name: "StrokeRUSBYLYAJKA-Medium", size: 40)
+        promptLabel.textColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
+        
         promptLabel.textAlignment = .center
         promptLabel.adjustsFontSizeToFitWidth = true
         promptLabel.minimumScaleFactor = 0.25
@@ -68,10 +73,10 @@ class ViewController: UIViewController {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         lettersCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         lettersCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        lettersCollectionView.backgroundColor = .white
-        lettersCollectionView.layer.borderWidth = 1
+        lettersCollectionView.backgroundColor = #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1)
         lettersCollectionView.layer.cornerRadius = 5
-        lettersCollectionView.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        lettersCollectionView.layer.borderWidth = 3
+        lettersCollectionView.layer.borderColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
         lettersCollectionView.layer.masksToBounds = true
         lettersCollectionView.register(LettersCollectionViewCell.self, forCellWithReuseIdentifier: "letterCell")
         view.addSubview(lettersCollectionView)
@@ -161,7 +166,7 @@ extension ViewController: UICollectionViewDataSource {
         let letter = String(rusLetters[rusLetters.index(rusLetters.startIndex, offsetBy: indexPath.item)])
 
         cell.letterLabel.text = letter
-        cell.letterLabel.textColor = hangmanGame.activatedLetters.contains(letter) ? #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1) : #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+        cell.letterLabel.textColor = hangmanGame.activatedLetters.contains(letter) ? #colorLiteral(red: 0.2605174184, green: 0.2605243921, blue: 0.260520637, alpha: 1) : #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
         cell.isUserInteractionEnabled = !hangmanGame.activatedLetters.contains(letter)
         
         return cell
