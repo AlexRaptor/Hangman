@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		664FFD902241FDE30016F52C /* LettersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664FFD8F2241FDE30016F52C /* LettersCollectionViewCell.swift */; };
 		66CF4C90223A0C0600F041AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF4C8F223A0C0600F041AC /* AppDelegate.swift */; };
 		66CF4C92223A0C0600F041AC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF4C91223A0C0600F041AC /* ViewController.swift */; };
 		66CF4C95223A0C0600F041AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66CF4C93223A0C0600F041AC /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		664FFD8F2241FDE30016F52C /* LettersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LettersCollectionViewCell.swift; sourceTree = "<group>"; };
 		66CF4C8C223A0C0500F041AC /* Hangman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hangman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66CF4C8F223A0C0600F041AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		66CF4C91223A0C0600F041AC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				66CF4C91223A0C0600F041AC /* ViewController.swift */,
+				664FFD8F2241FDE30016F52C /* LettersCollectionViewCell.swift */,
 			);
 			path = "View + Controller";
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				664FFD902241FDE30016F52C /* LettersCollectionViewCell.swift in Sources */,
 				66CF4C92223A0C0600F041AC /* ViewController.swift in Sources */,
 				66CF4C90223A0C0600F041AC /* AppDelegate.swift in Sources */,
 				66CF4CA5223A0E7300F041AC /* Hangman.swift in Sources */,

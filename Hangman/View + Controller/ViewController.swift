@@ -10,13 +10,20 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let letterCellSize = CGSize(width: 50, height: 50)
+    
     let rusLetters = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
 
     // UI -------------
     private var failsLabel: UILabel!
     private var wordNumberLabel: UILabel!
     private var promptLabel: UILabel!
-    private var letterButtons = [UIButton]()
+    private var lettersCollectionView: UICollectionView! {
+        didSet {
+            lettersCollectionView.dataSource = self
+            lettersCollectionView.delegate = self
+        }
+    }
     // ----------------
 
     private let hangmanGame = Hangman()
@@ -30,8 +37,9 @@ class ViewController: UIViewController {
     }
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-
+        
         hangmanGame.delegate = self
         hangmanGame.start()
     }
@@ -55,13 +63,16 @@ class ViewController: UIViewController {
         promptLabel.minimumScaleFactor = 0.25
         view.addSubview(promptLabel)
 
-        let letterButtonsContainerView = UIView()
-        letterButtonsContainerView.translatesAutoresizingMaskIntoConstraints = false
-        letterButtonsContainerView.layer.borderWidth = 1
-        letterButtonsContainerView.layer.cornerRadius = 5
-        letterButtonsContainerView.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        letterButtonsContainerView.layer.masksToBounds = true
-        view.addSubview(letterButtonsContainerView)
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        lettersCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        lettersCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        lettersCollectionView.backgroundColor = .white
+        lettersCollectionView.layer.borderWidth = 1
+        lettersCollectionView.layer.cornerRadius = 5
+        lettersCollectionView.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        lettersCollectionView.layer.masksToBounds = true
+        lettersCollectionView.register(LettersCollectionViewCell.self, forCellWithReuseIdentifier: "letterCell")
+        view.addSubview(lettersCollectionView)
 
         NSLayoutConstraint.activate([
 
@@ -77,29 +88,11 @@ class ViewController: UIViewController {
             promptLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
             promptLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 
-            letterButtonsContainerView.topAnchor.constraint(equalTo: promptLabel.bottomAnchor, constant: 50),
-            letterButtonsContainerView.widthAnchor.constraint(equalToConstant: 300),
-            letterButtonsContainerView.heightAnchor.constraint(equalToConstant: 300),
-            letterButtonsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            lettersCollectionView.topAnchor.constraint(equalTo: promptLabel.bottomAnchor, constant: 50),
+            lettersCollectionView.widthAnchor.constraint(equalToConstant: 300),
+            lettersCollectionView.heightAnchor.constraint(equalToConstant: 300),
+            lettersCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
-
-        let letterButtonWidth = 50
-        let letterButtonHeight = 50
-
-        for (index, letter) in rusLetters.enumerated() {
-
-            let column = index % 6
-            let row = index / 6
-
-            let letterButton = UIButton(type: .system)
-            letterButton.titleLabel?.font = UIFont.systemFont(ofSize: 36)
-            letterButton.setTitle(String(letter), for: .normal)
-            letterButton.frame = CGRect(x: letterButtonWidth * column, y: letterButtonHeight * row, width: letterButtonWidth, height: letterButtonHeight)
-            letterButton.addTarget(self, action: #selector(letterTapped), for: .touchUpInside)
-
-            letterButtons.append(letterButton)
-            letterButtonsContainerView.addSubview(letterButton)
-        }
     }
 
     private func updateUI() {
@@ -107,22 +100,8 @@ class ViewController: UIViewController {
         failsLabel.text = "Ошибок: \(hangmanGame.fails) из \(hangmanGame.MAX_FAILS)"
         wordNumberLabel.text = "Слово: \(hangmanGame.currentWordNumber) из \(hangmanGame.WORD_COUNT)"
         promptLabel.text = hangmanGame.prompt
-
-        for letterButton in letterButtons {
-
-            if let letter = letterButton.titleLabel?.text, hangmanGame.activatedLetters.contains(letter) {
-                letterButton.isEnabled = false
-            } else {
-                letterButton.isEnabled = true
-            }
-        }
-    }
-
-    @objc func letterTapped(_ sender: UIButton) {
-
-        guard let letter = sender.titleLabel?.text else { return }
-
-        hangmanGame.selectLetter(letter)
+        
+        lettersCollectionView.reloadData()
     }
 }
 
@@ -165,5 +144,55 @@ extension ViewController: HangmanDelegate {
 
         alert.addAction(action)
         present(alert, animated: true)
+    }
+}
+
+extension ViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return rusLetters.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "letterCell", for: indexPath) as! LettersCollectionViewCell
+        
+        let letter = String(rusLetters[rusLetters.index(rusLetters.startIndex, offsetBy: indexPath.item)])
+        print(letter)
+
+        cell.letterLabel.text = letter
+        cell.letterLabel.textColor = hangmanGame.activatedLetters.contains(letter) ? #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1) : #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+        cell.isUserInteractionEnabled = !hangmanGame.activatedLetters.contains(letter)
+        
+        return cell
+    }
+}
+
+extension ViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let letter = String(rusLetters[rusLetters.index(rusLetters.startIndex, offsetBy: indexPath.item)])
+        
+        hangmanGame.selectLetter(letter)
+    }
+}
+
+extension ViewController: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return letterCellSize
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 }
